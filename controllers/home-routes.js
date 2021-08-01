@@ -53,7 +53,7 @@ router.get('/comment/:id', async (req, res) => {
   try {
     const dbCommentData = await Comment.findByPk(req.params.id);
 comment
-    const comment = dbPaintingData.get({ plain: true });
+    const comment = dbCommentData.get({ plain: true });
     // Send over the 'loggedIn' session variable to the 'homepage' template
     res.render('comment', { comment, loggedIn: req.session.loggedIn });
   } catch (err) {

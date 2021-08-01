@@ -22,7 +22,7 @@ router.get('/blog/:id', async (req, res) => {
         }
         //serialize data
         const comment = commentData.get({ plain: true });
-        res.render('blog', blog);
+        res.render('comment', comment);
     } catch (err) {
         res.status(500).json(err);
     }
