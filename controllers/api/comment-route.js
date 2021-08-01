@@ -1,27 +1,27 @@
 const router = require('express').Router();
 
-const Blog = require('../models/Blog');
+const Comment = require('../models/Blog');
 
-//route to get all blogs
+//route to get all comments
 router.get('/', async (req, res) => {
-    const blogData = await Blog.findAll().catch((err) => {
+    const commentData = await Comment.findAll().catch((err) => {
         res.json(err);
     });
-    const blogs = blogData.map((blog) => blog.get({ plain: true }));
-    res.render('all', { blogs });
+    const comment = commentData.map((comment) => comment.get({ plain: true }));
+    res.render('all', { comment });
 });
 
-//route to get one blog
+//route to get one comment
 router.get('/blog/:id', async (req, res) => {
     try {
         //find ids of :id
-        const blogData = await Blog.findByPk(req.params.id);
+        const commentData = await Comment.findByPk(req.params.id);
         //if found...
-        if (!blogData) {
+        if (!commentData) {
             return;
         }
         //serialize data
-        const blog = blogData.get({ plain: true });
+        const comment = commentData.get({ plain: true });
         res.render('blog', blog);
     } catch (err) {
         res.status(500).json(err);
@@ -30,10 +30,11 @@ router.get('/blog/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try{
-        const blog = await Blog.update (
+        const comment = await Comment.update (
             req.body,
             { where: { id: req.params.id }}
         )
+        res.status(200).json(comment);
     }
     catch (err) {
 

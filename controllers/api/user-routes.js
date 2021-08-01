@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User } = require('../../models');
 
 // CREATE new user
+//signup
 router.post('/', async (req, res) => {
   try {
     const dbUserData = await User.create({
@@ -10,9 +11,11 @@ router.post('/', async (req, res) => {
       password: req.body.password,
     });
 
+    console.log("req.session.loggedIn before signup: ", req.session.loggedIn)
+
     req.session.save(() => {
       req.session.loggedIn = true;
-
+      console.log("req.session.loggedIn after signup: ", req.session.loggedIn)
       res.status(200).json(dbUserData);
     });
   } catch (err) {
