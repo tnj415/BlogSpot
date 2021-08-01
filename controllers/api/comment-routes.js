@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const Comment = require('../models/Blog');
+const Comment = require('../../models/Comment');
 
 //route to get all comments
 router.get('/', async (req, res) => {
@@ -24,6 +24,18 @@ router.get('/blog/:id', async (req, res) => {
         const comment = commentData.get({ plain: true });
         res.render('blog', blog);
     } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+router.post('/', async (req, res) => {
+    console.log("test", req.body)
+    try {
+        const commentData = await Comment.create(req.body)
+        res.status(200).json(commentData);
+
+    } catch (err) {
+        console.log(err)
         res.status(500).json(err);
     }
 })

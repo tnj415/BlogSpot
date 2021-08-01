@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const Blog = require('../models/Blog');
+const Blog = require('../../models/Blog');
 
 //route to get all blogs
 router.get('/', async (req, res) => {
@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
 
 //route to get one blog
 router.get('/blog/:id', async (req, res) => {
+    
     try {
         //find ids of :id
         const blogData = await Blog.findByPk(req.params.id);
@@ -27,6 +28,19 @@ router.get('/blog/:id', async (req, res) => {
         res.status(500).json(err);
     }
 })
+
+router.post('/', async (req, res) => {
+    console.log("test", req.body)
+    try {
+        const dbBlogData = await Blog.create(req.body)
+        res.status(200).json(dbBlogData);
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err);
+    }
+})
+
 
 router.put('/:id', async (req, res) => {
     try{
