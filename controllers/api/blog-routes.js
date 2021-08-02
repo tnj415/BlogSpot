@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
         res.json(err);
     });
     const blogs = blogData.map((blog) => blog.get({ plain: true }));
-    res.render('all', { blogs });
+    res.render('blog', { blogs });
 });
 
 //route to get one blog

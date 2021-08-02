@@ -4,10 +4,9 @@ const { Blog, Comment } = require('../models');
 // GET all blogs for homepage
 router.get('/', async (req, res) => {
   try {
-    const dbBlogData = await Blog.findAll({
-      include: [{ model: Comment }]
-    });
+    const dbBlogData = await Blog.findAll();
 
+    //convert plain text for handlebars
     const blogs = dbBlogData.map((blog) =>
       blog.get({ plain: true })
     );
