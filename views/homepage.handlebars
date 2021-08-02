@@ -1,5 +1,5 @@
 {{!-- for each blog, the 'blog-details' partial is used to render blog data --}}
-{{#each blog}}
+{{#each blogs as |blog|}}
 {{!-- chevron/angle brackets indicate a partial --}}
 {{>blog-details}}
 {{/each}}
