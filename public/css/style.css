@@ -1,6 +1,113 @@
 *{
-    color: red;
+    
+     /* background-color: #b4ad81;  */
+    /* background-color: #d8cf9a; */
+    /* color: #444343; */
+    /* color: #ff6600; */
+    /* color: #f0ebd1; */
+    
+    
 }
-.h1{
-    color: red;
+body {
+background-color: #fff7cb;
+margin: 0px;
+}
+
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 0px;
+    width: 100%;
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.5),
+                 2px 2px 10px 5px rgba(0, 0, 0, 0.2);
+    background-color: #b4ad81;
+
+}
+
+.icon { padding: 0px 20px;}
+
+/* .main-title {
+    display: grid;
+    place-content: center;
+    text-align: center;
+
+} */
+
+h1{
+    /* font-size: clamp (1rem, 3vw + 1rem, 4rem); */
+    position: relative;
+    font-family: "Source Code Pro", monospace;
+    letter-spacing: 5px;
+    color: #f0ebd1;
+    transition: transform 1s;
+    
+}
+
+.cursor {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    background-color: #f0ebd1;
+    margin-left: 0rem;
+    animation: blink .75s infinite;
+}
+
+.typing {
+    animation: none;
+}
+
+.typed-text {
+    color: #ff6600;;
+}
+
+@keyframes typewriter {
+
+    to {
+        left: 100%;
+    }
+}
+
+@keyframes blink {
+
+    0% {background-color: #f0ebd1;}
+    49% {background-color: #f0ebd1;}
+    50% {background-color: transparent;}
+    99% {background-color: transparent;}
+    100% {background-color: #f0ebd1;}
+
+}
+
+.nav-menu a,
+.nav-menu li,
+.nav-menu ul{
+    font-family: "Source Code Pro", monospace;
+    text-decoration: none;
+    list-style: none;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #f0ebd1;
+    transition: .25s ease-out;
+}
+
+.nav-menu a:hover {
+    color: #ff6600;
+    text-decoration: underline;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.main-content {
+    
+    background-color: #fff7cb;
+    height: 100vh
+  
+    
 }
