@@ -1,21 +1,33 @@
-{{#each user}}
-<article class="blog-card"></article>
+<div class="dash-title">
+    <h1 class="big">{{dashboardInfo.username}}</h1>
+</div>
+
+    <p class="large">Email: {{dashboardInfo.email}}</p>
+   <div class="oneline"><p class="large protect">Password: {{dashboardInfo.password}}</p></div>
+
+<div class="dash-title">
+    <h1>Blog Posts</h1>
+</div>
+{{#each dashboardInfo.blogs as |dblg|}}
+
+<article class="blog-card">
     <section class="title-section">
-        <h3 class="title">{{blog_title}}</h3>
+        <h3 class="title">{{dblg.blog_title}}</h3>
     </section>
+    <section class="content-section">
+        <p>{{dblg.content}}</p>
+    </section>
+</article>
+{{/each}}
+<div class="dash-title">
+<h1>Comments</h1>
+</div>
+{{#each dashboardInfo.comments as |dcom|}}
+    <article class="comment-card">
+    <section class="title-section"></section>
 
     <section class="content-section">
-        <p>{{content}}</p>
+        <p>{{dcom.content}}</p>
     </section>
-
-    <article class="comment-card"></article>
-    <section class="title-section">
-        <h3 class="title">{{blog_id}}</h3>
-        
-    </section>
-
-    <section class="content-section">
-        <p>{{content}}</p>
-    </section>
+    </article>
     {{/each}}
-
