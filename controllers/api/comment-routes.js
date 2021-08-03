@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 });
 
 //route to get one comment
-router.get('/blog/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         //find ids of :id
         const commentData = await Comment.findByPk(req.params.id);
@@ -31,7 +31,8 @@ router.get('/blog/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     console.log("test", req.body)
     try {
-        const commentData = await Comment.create(req.body)
+        const commentData = await Comment.create(req.body,{user_id: req.params.user_id })
+        //maybe need spread operator
         res.status(200).json(commentData);
 
     } catch (err) {

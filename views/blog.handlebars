@@ -1,18 +1,5 @@
-<article class="blog-card">
-{{#each blog}}
-    <section class="title-section">
-        <h3 class="title">{{blog_title}}</h3>
-        <p>By {{username}}</p>
-    </section>
-
-    <section class="content-section">
-        <p>{{content}}</p>
-    </section>
+{{!-- for each blog, the 'blog-details' partial is used to render blog data --}}
+{{#each blogs as |blog|}}
+{{!-- chevron/angle brackets indicate a partial --}}
+{{>blog-details}}
 {{/each}}
-{{#each comment}}
-    <section class="comment-section">
-        <input type="text" class="comment-title">
-        <input type="text" class="comment-content">
-        <button class="submit"></button>
-    </section>
-</article>

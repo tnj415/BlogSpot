@@ -1,16 +1,5 @@
-<article class="login-card">
-    <div class="title"></div>
-    <div class="content">
-        <form action="input">
-            <input type="text" placeholder="Email">
-            <input type="text" placeholder="Password">
-            <button class="submit">Sign Up</button>
-            </form>
-
-            <form action="input">
-            <input type="text" placeholder="Email">
-            <input type="text" placeholder="Password">
-            <button class="submit">Sign In</button>
-            </form>
-    </div>
-</article>
+{{!-- for each blog, the 'blog-details' partial is used to render blog data --}}
+{{#each blogs as |blog|}}
+{{!-- chevron/angle brackets indicate a partial --}}
+{{>login-details}}
+{{/each}}

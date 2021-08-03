@@ -1,5 +1,5 @@
-<article class="blog-card">
-    <a href="/blog/{{id}}">
+{{#each blog}}
+<article class="blog-card"></article>
     <section class="title-section">
         <h3 class="title">{{blog_title}}</h3>
         <p>By {{username}}</p>
@@ -8,5 +8,11 @@
     <section class="content-section">
         <p>{{content}}</p>
     </section>
-    </a>
+{{/each}}
+{{#each comment}}
+    <section class="comment-section">
+        <input type="text" class="comment-title">
+        <input type="text" class="comment-content">
+        <button class="submit"></button>
+    </section>
 </article>

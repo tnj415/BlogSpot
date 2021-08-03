@@ -27,7 +27,12 @@ margin: 0px;
 
 }
 
-.icon { padding: 0px 20px;}
+.icon { 
+    /* display: flex;
+    flex-direction: row; */
+    padding: 0px 20px;
+}
+
 
 /* .main-title {
     display: grid;
@@ -42,9 +47,9 @@ h1{
     font-family: "Source Code Pro", monospace;
     letter-spacing: 5px;
     color: #f0ebd1;
-    transition: transform 1s;
-    
+    transition: transform scaleX(5) 1s;    
 }
+
 
 .cursor {
     content: "";
@@ -90,7 +95,7 @@ h1{
     font-size: 18px;
     font-weight: bold;
     color: #f0ebd1;
-    transition: .25s ease-out;
+    transition: .1s ease-out;
 }
 
 .nav-menu a:hover {
@@ -106,8 +111,37 @@ h1{
 
 .main-content {
     
-    background-color: #fff7cb;
-    height: 100vh
+    background-color: #b4ad81;
+    border: 3px solid #ff6600;
+    border-radius: 15px;
+    margin: 20px;
+    padding: 50px;
   
     
+}
+
+.blog-card {
+    background-color: #f0ebd1;
+    padding: 20px 50px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.title-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 2px solid #ff66002c;
+    padding: 0px 20px;
+    font-family: "Source Code Pro", monospace;
+}
+.title { 
+    letter-spacing: 2px;
+    /* font-size: 20px;
+    font-weight: bold; */
+}
+
+.user{ 
+    letter-spacing: 1px;
 }

@@ -29,6 +29,7 @@ router.get('/blog/:id', async (req, res) => {
     }
 })
 
+//create
 router.post('/', async (req, res) => {
     console.log("test", req.body)
     try {
@@ -41,15 +42,34 @@ router.post('/', async (req, res) => {
     }
 })
 
-
+//update
 router.put('/:id', async (req, res) => {
     try{
-        const blog = await Blog.update (
+        const dbBlogData = await Blog.update (
             req.body,
             { where: { id: req.params.id }}
         )
+        res.status(200).json(dbBlogData);
     }
     catch (err) {
+        console.log(err)
+        res.status(500).json(err);
+
+    }
+})
+
+//delete
+router.delete('/:id', async (req, res) => {
+    try{
+        const dbBlogData = await Blog.destroy (
+            req.body,
+            { where: { id: req.params.id }}
+        )
+        res.status(200).json(dbBlogData);
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json(err);
 
     }
 })
