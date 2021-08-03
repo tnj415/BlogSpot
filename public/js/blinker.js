@@ -52,6 +52,5 @@ function erase() {
 
 document.addEventListener("DOMContentLoaded", function () {
     setTimeout(type, newTextDelay + 250);
-    GiDrippingGoo(props)
     //type ();
 })

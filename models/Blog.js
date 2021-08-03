@@ -13,23 +13,23 @@ Blog.init(
     },
     blog_title: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     content: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
     },
    username: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-        references: {
-            model: 'user',
-            key: 'id'
-        }
+      allowNull: false,
+        // references: {
+        //     model: 'user',
+        //     key: 'id'
+        // }
     }
   },
   {
