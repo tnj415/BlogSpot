@@ -1,27 +1,34 @@
 const router = require('express').Router();
-const { User, Blog, Comment } = require('../../models')
+const { User, Blog, Comment } = require('../models')
+
+// GET all users
+router.get('/', async (req, res) => {
+ 
+      try {
+      const userData = await Blog.findAll();
+  
+      //convert plain text for handlebars
+      const user = userData.map((user) => user.get({ plain: true })
+      );
+      
+      res.render('dashboard', {
+        user,
+    
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+
+  })
 
 //route to get user data
 router.get('/:id', async (req, res) => {
     try {
-        const userData = await User.findByPk(req.params.id, {
-            include: [
-                {
-                    model: Blog,
-                    attributes: {
-                        blog_title,
-                        content
-                    }
-                },
-                {
-                    model: Comment,
-                    attributes: {
-                        blog_id,
-                        content
-
-                    }
-                }
-            ]
+        const userData = await User.findByPk({
+          where: {
+            id: req.params.id
+          }
         })
 
         if (!userData) {
@@ -29,10 +36,13 @@ router.get('/:id', async (req, res) => {
             return;
         }
 
-        res.status(200).json(userData);
+        const user = userData.get({plain: true});
+
+        res.render('dashboard', { user })
 
     } catch (err) {
-        res.json(err);
+      console.log(`ERROR: http://localhost:3001/dashboard/${req.params.id}`)
+        res.status(500).json(err);
     };
 
 });

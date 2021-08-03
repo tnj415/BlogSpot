@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const withAuth = require('../../utils/auth');
 
 const Comment = require('../../models/Comment');
 
@@ -50,6 +51,22 @@ router.put('/:id', async (req, res) => {
         res.status(200).json(comment);
     }
     catch (err) {
+
+    }
+})
+
+//delete
+router.delete('/:id', async (req, res) => {
+    try{
+        const comment = await Comment.destroy (
+            req.body,
+            { where: { id: req.params.id }}
+        )
+        res.status(200).json(comment);
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json(err);
 
     }
 })

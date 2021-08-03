@@ -3,16 +3,11 @@ const { Blog, Comment } = require('../models');
 
 // GET all blogs for homepage
 router.get('/', async (req, res) => {
-  //if (req.session.loggedIn) {
     try {
     const dbBlogData = await Blog.findAll();
-
     //convert plain text for handlebars
-    const blogs = dbBlogData.map((blog) =>
-      //return blog.get({ plain: true })
-      blog.get({ plain: true })
-    );
-    // Send over the 'loggedIn' session variable to the 'homepage' template
+    const blogs = dbBlogData.map((blog) => blog.get({ plain: true }));
+    // Send over the blogs and 'loggedIn' session variable to the 'homepage' template
     res.render('homepage', {
       blogs,
       loggedIn: req.session.loggedIn,

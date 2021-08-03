@@ -1,18 +1,34 @@
 const router = require('express').Router();
+//const withAuth = require('../../utils/auth');
 
-const Blog = require('../../models/Blog');
+const { Blog, Comment } = require('../../models');
 
 //route to get all blogs
 router.get('/', async (req, res) => {
-    const blogData = await Blog.findAll().catch((err) => {
-        res.json(err);
-    });
+    try {
+    const blogData = await Blog.findAll({
+        where: { id: blog_id },
+            include: [{
+                model: Comment,
+                attributes: {
+                    content, username
+
+                },
+                
+            }]
+        }
+    )
+    //convert plain text for handlebars
     const blogs = blogData.map((blog) => blog.get({ plain: true }));
     res.render('blog', { blogs });
+
+} catch(err) {
+    res.status(500).json(err);
+};
 });
 
 //route to get one blog
-router.get('/blog/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     
     try {
         //find ids of :id
@@ -33,8 +49,8 @@ router.get('/blog/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     console.log("test", req.body)
     try {
-        const dbBlogData = await Blog.create(req.body)
-        res.status(200).json(dbBlogData);
+        const blog = await Blog.create(req.body)
+        res.status(200).json(blog);
 
     } catch (err) {
         console.log(err)
@@ -45,11 +61,11 @@ router.post('/', async (req, res) => {
 //update
 router.put('/:id', async (req, res) => {
     try{
-        const dbBlogData = await Blog.update (
+        const blog = await Blog.update (
             req.body,
             { where: { id: req.params.id }}
         )
-        res.status(200).json(dbBlogData);
+        res.status(200).json(blog);
     }
     catch (err) {
         console.log(err)
@@ -61,11 +77,11 @@ router.put('/:id', async (req, res) => {
 //delete
 router.delete('/:id', async (req, res) => {
     try{
-        const dbBlogData = await Blog.destroy (
+        const blog = await Blog.destroy (
             req.body,
             { where: { id: req.params.id }}
         )
-        res.status(200).json(dbBlogData);
+        res.status(200).json(blog);
     }
     catch (err) {
         console.log(err)
