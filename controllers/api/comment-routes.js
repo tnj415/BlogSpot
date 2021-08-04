@@ -32,7 +32,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     console.log("test", req.body)
     try {
-        const commentData = await Comment.create(req.body,{user_id: req.params.user_id })
+        const commentData = await Comment.create(req.body, {user_id: req.params.user_id })
         //maybe need spread operator
         res.status(200).json(commentData);
 
