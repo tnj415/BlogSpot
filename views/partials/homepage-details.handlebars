@@ -2,12 +2,14 @@
     {{!-- <a href="/blog/{{id}}"> --}}
     <section class="title-section">
         <div>
-        <h3 class="title">{{blog_title}}</h3>
+         <a href="/blog/{{id}}">{{title}}
+            <h3 class="title">{{blog_title}}</h3>
+        </a>
         <p class="user">By {{username}}</p>
         </div>
         <div>
-        <p>date created: {{format_date createdAt}}</p>
-        <p>date updated: {{format_date updatedAt}}</p>
+        <p>Date Created: {{format_date createdAt}}</p>
+        <p>Date Updated: {{format_date updatedAt}}</p>
         </div>
     </section>
 

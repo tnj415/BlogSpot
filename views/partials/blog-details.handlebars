@@ -1,18 +1,45 @@
 <article class="blog-card">
-    {{!-- <a href="/blog/{{id}}"> --}}
+
     <section class="title-section">
-        <h3 class="title">{{blog_title}}</h3>
-        <p class="user">By {{username}}</p>
+        <div>
+     
+            <h3 class="title">{{blog.blog_title}}</h3>
+    
+        <p class="user">By {{blog.username}}</p>
+        </div>
+        <div>
+        <p>Date Created: {{format_date blog.createdAt}}</p>
+        <p>Date Updated: {{format_date blog.updatedAt}}</p>
+        </div>
     </section>
 
     <section class="content-section">
-        <p>{{content}}</p>
+        <p>{{blog.content}}</p>
     </section>
+
    
 </article>
 
-
-    <section class="comment-section">
-       
+   
+    <article class="comment-card">
+        
+    
+        <button class="add-comment">Toggle Comment Form</button>
+        <form action="input"  class="comment-form hide">
+            <input class="username"type="input" placeholder="username">
+            <textarea class="comment-field" type="text"></textarea>
+            <button class="submitBtn">Submit</button>
+        </form>
+        <section class="title-section">
+        <h3>Comments</h3>
+        {{#each blog.comments as |c|}}
+        </section>
+        <p style="font-weight: bold">{{c.username}}</p>
+    <section class="content-section">
+        <p>{{c.content}}</p>
     </section>
-</article>
+    {{/each}}
+    </article>
+    
+
+    <script src="/js/add-comment.js"></script>
