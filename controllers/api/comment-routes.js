@@ -46,7 +46,7 @@ router.put('/:id', async (req, res) => {
     try{
         const comment = await Comment.update (
             req.body,
-            { where: { id: req.params.id }}
+            { where: { blog_id: req.params.id }}
         )
         res.status(200).json(comment);
     }

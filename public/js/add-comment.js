@@ -1,6 +1,6 @@
 var addCommentEl = document.querySelector(".add-comment");
 var addCommentFormEl = document.querySelector(".comment-form");
-var submitBtnEl = document.querySelector(".butmitBtn");
+var submitBtnEl = document.querySelector(".submitBtn");
 
 addCommentEl.addEventListener("click", () => {
     addCommentFormEl.classList.toggle("show")
@@ -16,11 +16,16 @@ async function addComment(event) {
     
     const id = window.location.toString().split('/').pop();
 
+console.log("Window.Location = ", window.location)
+console.log("ID = ", id)
+
     const response = await fetch(`/blog/${id}`, {
+        
         method: 'PUT',
         body: JSON.stringify({
             username,
-            content
+            content,
+            blog_id: id
         }),
         headers: {
             'Content-Type': 'application/json'

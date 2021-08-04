@@ -37,7 +37,7 @@ router.get('/auth', (req, res) => {
 
 //route to get all blogs
 router.get('/blog/:id', withAuth, async (req, res) => {
-  console.log("hit");
+ 
   try {
       const blogData = await Blog.findByPk(req.params.id, {
           include: [{
