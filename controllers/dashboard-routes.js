@@ -9,11 +9,11 @@ router.get('/:id', withAuth, async (req, res) => {
 
       include: [{
         model: Blog,
-        where: { user_id: req.params.id }
+        // where: { user_id: req.params.id }
       },
       {
         model: Comment,
-        where: { user_id: req.params.id}
+        // where: { user_id: req.params.id}
       }]
     });
 
