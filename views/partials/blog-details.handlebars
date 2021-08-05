@@ -26,17 +26,18 @@
     
         <button class="add-comment">Toggle Comment Form</button>
         <form type="input"  class="comment-form hide">
-            <input class="username"type="input" placeholder="username">
             <textarea class="comment-field" type="text"></textarea>
-            <button class="submitBtn">Submit</button>
+            <button class="submitBtn" type="submit">Submit</button>
         </form>
+
         <section class="title-section">
-        <h3>Comments</h3>
-        {{#each blog.comments as |c|}}
+            <h3>Comments</h3>
+        
         </section>
+{{#each blog.comments as |c|}}
         <p style="font-weight: bold">{{c.username}}</p>
     <section class="content-section">
-        <p>{{c.content}}</p>
+        <p>{{c.content}} <button class="delete" id="{{c.id}}">x</button></p>
     </section>
     {{/each}}
     </article>

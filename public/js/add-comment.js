@@ -1,29 +1,45 @@
 var addCommentEl = document.querySelector(".add-comment");
 var addCommentFormEl = document.querySelector(".comment-form");
 var submitBtnEl = document.querySelector(".submitBtn");
+var commentCardEl = document.querySelector(".comment-card");
+
+commentCardEl.addEventListener("click", async (e) => {
+    if (e.target.matches(".delete")) {
+        const id = e.target.id
+        const response = await fetch(`/api/comment/${id}`, {
+
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+
+        })
+
+          if (response.ok) {
+              window.location.reload()
+          }
+
+    }
+
+})
 
 addCommentEl.addEventListener("click", () => {
     addCommentFormEl.classList.toggle("show")
     addCommentFormEl.classList.toggle("hide")
 })
 
-submitBtnEl.addEventListener("submit", addComment)
-
-async function addComment(event) {
+addCommentFormEl.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const username = document.querySelector('username').value;
-    const content = document.querySelector('comment-field').value;
+
+    const content = document.querySelector('.comment-field').value;
     
     const id = window.location.toString().split('/').pop();
 
-console.log("Window.Location = ", window.location)
-console.log("ID = ", id)
-
-    const response = await fetch(`/blog/${id}`, {
+    const response = await fetch(`/api/comment`, {
         
-        method: 'PUT',
+        method: 'POST',
         body: JSON.stringify({
-            username,
             content,
             blog_id: id
         }),
@@ -39,5 +55,6 @@ console.log("ID = ", id)
         //document.location.reload()
     }
     else alert('Failed to add comment')
-}
+})
+
 

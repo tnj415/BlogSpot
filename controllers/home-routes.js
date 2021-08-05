@@ -41,18 +41,18 @@ router.get('/blog/:id', withAuth, async (req, res) => {
   try {
       const blogData = await Blog.findByPk(req.params.id, {
           include: [{
-              model: Comment,
-              where: {blog_id: req.params.id}
+            model: Comment,
+            //where: {blog_id: req.params.id}
           }]
-      })
-
+        })
+        console.log("blog: ", blogData)
+        
       if (!blogData) {
           res.status(404).json({ message: 'Blog Not Found!' });
           return;
       }
       //convert plain text for handlebars
       const blog = blogData.get({ plain: true });
-      console.log("blog: ", blog)
 
       res.render('blog', {blog});
 

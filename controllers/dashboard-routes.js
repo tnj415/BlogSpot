@@ -2,32 +2,6 @@ const router = require('express').Router();
 const { User, Blog, Comment } = require('../models')
 const withAuth = require('../utils/auth')
 
-// // GET all users
-// router.get('/', async (req, res) => {
-
-//   try {
-//     const userData = await Blog.findAll();
-
-//     //convert plain text for handlebars
-//     const dashboardInfo = userData.map((user) => user.get({ plain: true })
-//     );
-
-//     res.render('dashboard', {
-//       dashboardInfo,
-
-//     });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-
-// })
-
-
-// router.get('/:id', async (req, res) => {
-//   return res.render('dashboard', User[req.params.num - 1]);
-// });
-
 //route to get user data
 router.get('/:id', withAuth, async (req, res) => {
   try {

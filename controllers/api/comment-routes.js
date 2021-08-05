@@ -31,8 +31,14 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     console.log("test", req.body)
+    console.log("req.session: " , req.session)
     try {
-        const commentData = await Comment.create(req.body, {user_id: req.params.user_id })
+        const commentData = await Comment.create({ 
+            ...req.body,
+            username: req.session.username,
+            user_id: req.session.user_id
+        
+        })
         //maybe need spread operator
         res.status(200).json(commentData);
 
@@ -57,9 +63,9 @@ router.put('/:id', async (req, res) => {
 
 //delete
 router.delete('/:id', async (req, res) => {
+    console.log("entered route")
     try{
         const comment = await Comment.destroy (
-            req.body,
             { where: { id: req.params.id }}
         )
         res.status(200).json(comment);
